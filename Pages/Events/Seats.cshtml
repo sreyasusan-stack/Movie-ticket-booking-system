@@ -1,0 +1,29 @@
+﻿
+@page "/events/{id:int}/seats"
+@model Movie_ticket_booking_system.Pages.Events.SeatsModel
+
+<h2>@Model.Event.Title (@Model.Event.Venue) — @Model.Event.StartsAt.ToString("dd MMM, hh:mm tt")</h2>
+
+<table border="1" cellpadding="5">
+    <tr>
+        <th>Seat</th>
+        <th>Status</th>
+    </tr>
+    @foreach (var seat in Model.Seats)
+    {
+        <tr>
+            <td>@seat.Label</td>
+            <td>
+                @if (seat.IsBooked)
+                {
+                    <span style="color:red">Booked</span>
+                }
+                else
+                {
+                    <a asp-page="/Bookings/Book" asp-route-seatId="@seat.Id" class="btn btn-sm btn-success">Book</a>
+                }
+            </td>
+        </tr>
+    }
+
+</table>

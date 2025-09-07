@@ -1,0 +1,27 @@
+﻿@page
+@model Movie_ticket_booking_system.Pages.IndexModel
+@{
+    ViewData["Title"] = "Home";
+
+}
+<h1>Movie Ticket Booking System</h1>
+
+@if (!Model.Events.Any())
+{
+    <p>No events found.</p>
+}
+else
+{
+    <div>
+        @foreach (var e in Model.Events)
+        {
+            <div style="margin-bottom: 1rem;">
+                <h3>@e.Title</h3>
+                <p>@e.Venue — @e.StartsAt.ToString("dd MMM yyyy hh:mm tt")</p>
+                <p>
+                    <a class="btn btn-primary" asp-page="/Events/Seats" asp-route-id="@e.Id">View Seats</a>
+                </p>
+            </div>
+        }
+    </div>
+}

@@ -1,0 +1,35 @@
+﻿@page "{seatId:int}"
+@model Movie_ticket_booking_system.Pages.Bookings.BookModel
+@{
+    ViewData["Title"] = "Book Seat";
+}
+
+<h2>Book Seat @Model.Seat?.Label</h2>
+
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <div style="color:red">@Model.ErrorMessage</div>
+}
+
+<form method="post">
+    <div>
+        <label>Name:</label>
+        <input asp-for="Input.CustomerName" />
+        <span asp-validation-for="Input.CustomerName" style="color:red"></span>
+    </div>
+    <div>
+        <label>Phone:</label>
+        <input asp-for="Input.Phone" />
+        <span asp-validation-for="Input.Phone" style="color:red"></span>
+    </div>
+    <div>
+        <label>Email:</label>
+        <input asp-for="Input.Email" />
+        <span asp-validation-for="Input.Email" style="color:red"></span>
+    </div>
+    <button type="submit" class="btn btn-success">Confirm Booking</button>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
